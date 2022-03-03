@@ -1,6 +1,7 @@
 package com.fahram.latihanintent
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var btnMove : Button
     lateinit var btnMoveWithData: Button
     lateinit var btnMoveWithObject: Button
+    lateinit var btnDial: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,10 +19,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnMove = findViewById(R.id.btn_move)
         btnMoveWithData = findViewById(R.id.btn_move_with_data)
         btnMoveWithObject = findViewById(R.id.btn_move_with_object)
+        btnDial = findViewById(R.id.btn_dial)
 
         btnMove.setOnClickListener(this)
         btnMoveWithData.setOnClickListener(this)
         btnMoveWithObject.setOnClickListener(this)
+        btnDial.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -39,6 +43,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val mahasiswa = Mahasiswa(202100210, "Joko Susilo")
                 intent.putExtra(MoveWithObjectActivity.EXTRA_MAHASISWA, mahasiswa)
                 startActivity(intent)
+            }
+            R.id.btn_dial -> {
+                startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:0816689298")))
             }
         }
     }
